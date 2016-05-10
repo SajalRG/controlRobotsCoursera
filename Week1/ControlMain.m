@@ -6,7 +6,7 @@
 #}
 
 # t is continuous time variable
-dT = 0.001;
+dT = 0.1;
 totalSamples = 100;
 Tfinal = dT * totalSamples;
 t = 0:dT:Tfinal;
@@ -20,10 +20,12 @@ m = 1;
 #r is expected value
 r = 70;
 
-#using bang-bang control
-[x, uArray] = bangBangControl(totalSamples, c , m, r);
+#uncomment below to use bang-bang control
+#[uArray, x] = bangBangControl(totalSamples, c , m, r);
+#plotControlAndInputGraph(x,t, uArray);
 
-#plotting the graph
-plotControlAndInputGraph(x,t, uArray);
+#uncomment below to use pControlWithoutWind
+x = pControlWithoutWind(totalSamples, c , m, r);
+plotControlAndInputGraph(x,t);
 
 pause(60);

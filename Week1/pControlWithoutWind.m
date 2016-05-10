@@ -1,19 +1,22 @@
 #{
-	This function shows Bang Bang Control
+	This function shows P regulator
 	c is the magical constant
 	m is mass of the car
 	r is expected output
 	
-	u = Umax (if e > 0); -Umax (if e < 0) ; 0 (if e = 0)
+	u = ke; e = r - x
+	k is proportional constant
 #}
 
-function [controlInput, controlOutput] = bangBangControl(totalSamples, c , m, r)
+function [controlOutput] = pControlWithoutWind(totalSamples, c , m, r)
 	#u is the input that we are going to design
-	Umax = 100;
 	magicConstant = c/m; #from the lecture
 	
+	# k is proportionality constant
+	k = 0.2;
+	
 	#this is random constant, feel free to play with it
-	dT = 0.003;
+	dT = 1;
 	
 	controlOutput = 0; # this is x
 	controlInput = 0; # this is u
@@ -29,18 +32,9 @@ function [controlInput, controlOutput] = bangBangControl(totalSamples, c , m, r)
 		#e is error
 		e = r - controlOutput(i) ;
 		
-		#for finding u - bang-bang input
-		if(e > 0) 
-			u = Umax;
-		elseif( e < 0) 
-			u = -Umax;
-		else
-			u=0;
-		endif
+		#for finding u - p input
+		u = k * e;
 		
-		controlInput(i) = u;
 		controlOutput(i+1) = controlOutput(i) + dT * magicConstant * u;
-		controlInput(i+1) = 0;
-		controlOutput(i)
     endfor
 endfunction
