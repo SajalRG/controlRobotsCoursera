@@ -8,7 +8,7 @@
 	k is proportional constant
 #}
 
-function [controlOutput] = pControlWithoutWind(totalSamples, c , m, r)
+function [controlInput, controlOutput] = pControlWithoutWind(totalSamples, c , m, r)
 	#u is the input that we are going to design
 	magicConstant = c/m; #from the lecture
 	
@@ -35,6 +35,9 @@ function [controlOutput] = pControlWithoutWind(totalSamples, c , m, r)
 		#for finding u - p input
 		u = k * e;
 		
+		controlInput(i) = u;
 		controlOutput(i+1) = controlOutput(i) + dT * magicConstant * u;
+		#added for plotting ease
+		controlInput(i+1) = 0;
     endfor
 endfunction
