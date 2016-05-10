@@ -25,7 +25,11 @@ r = 70;
 #plotControlAndInputGraph(x,t, uArray);
 
 #uncomment below to use pControlWithoutWind
-x = pControlWithoutWind(totalSamples, c , m, r);
+#x = pControlWithoutWind(totalSamples, c , m, r);
+#plotControlAndInputGraph(x,t);
+
+#uncomment below to use pControlWithWind i.e. model with wind resistance
+x = pControlWithWind(totalSamples, c , m, r);
 plotControlAndInputGraph(x,t);
 
 pause(60);
