@@ -24,12 +24,16 @@ r = 70;
 #[uArray, x] = bangBangControl(totalSamples, c , m, r);
 #plotControlAndInputGraph(x,t, uArray);
 
+#uncomment below to use bang-bang control with some resistance
+[uArray, x] = bangBangControlWithResistance(totalSamples, c , m, r);
+plotControlAndInputGraph(x,t, uArray);
+
 #uncomment below to use pControlWithoutWind
 #x = pControlWithoutWind(totalSamples, c , m, r);
 #plotControlAndInputGraph(x,t);
 
 #uncomment below to use pControlWithWind i.e. model with wind resistance
-x = pControlWithWind(totalSamples, c , m, r);
-plotControlAndInputGraph(x,t);
+#x = pControlWithWind(totalSamples, c , m, r);
+#plotControlAndInputGraph(x,t);
 
 pause(60);
