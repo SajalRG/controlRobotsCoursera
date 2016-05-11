@@ -7,7 +7,7 @@
 
 # t is continuous time variable
 dT = 0.1;
-totalSamples = 100;
+totalSamples = 10000;
 Tfinal = dT * totalSamples;
 t = 0:dT:Tfinal;
 
@@ -24,16 +24,16 @@ r = 70;
 #[uArray, x] = bangBangControl(totalSamples, c , m, r);
 
 #uncomment below to use bang-bang control with some resistance
-#[uArray, x] = bangBangControlWithResistance(totalSamples, c , m, r);
-
+[uArray, x] = bangBangControlWithResistance(totalSamples, c , m, r);
+plotControlAndInputGraph(x,t);
 
 #uncomment below to use pControlWithoutWind
-[uArray, x] = pControlWithoutWind(totalSamples, c , m, r);
+#[uArray, x] = pControlWithoutWind(totalSamples, c , m, r);
 
 #uncomment below to use pControlWithWind i.e. model with wind resistance
 #[uArray, x] = pControlWithWind(totalSamples, c , m, r);
 
 #plotting
-plotControlAndInputGraph(x,t, uArray);
+#plotControlAndInputGraph(x,t, uArray);
 
 pause(60);
