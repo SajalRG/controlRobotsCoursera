@@ -82,8 +82,6 @@ function [controlInput, controlOutput] = bangBangControlWithResistance(totalSamp
 	        
 	        controlOutput(i+1) = controlOutput(i) + dT * (A+2*B+2*C+D)*(1/6);
 
-		#controlOutput(i+1) = controlOutput(i) + dT * (magicConstant * u
-							#- k * controlOutput(i));
 		controlInput(i+1) = 0;
     endfor
 endfunction
